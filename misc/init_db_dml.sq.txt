@@ -1,0 +1,191 @@
+CREATE USER 'classif_admin'@'%'  identified by 'classif_admin';
+CREATE USER 'classif_admin'@'localhost'  identified by 'classif_admin';
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `dev_hon_navigator`.* TO 'classif_admin'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `dev_hon_navigator`.* TO 'classif_admin'@'localhost';
+flush privileges;
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `dev_hon_navigator`.* TO 'dev'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `dev_hon_navigator`.* TO 'dev'@'localhost';
+flush privileges;
+
+========================================================================================================================================================
+
+CREATE DATABASE IF NOT EXISTS `dev_hon_navigator` DEFAULT CHARACTER SET utf8 COLLATE utf8_czech_ci;
+USE `dev_hon_navigator`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_checkpoint`
+--
+
+DROP TABLE IF EXISTS `tbl_checkpoint`;
+CREATE TABLE `tbl_checkpoint` (
+  `id` int(11) NOT NULL,
+  `checkpoint_id` varchar(50) COLLATE utf8_czech_ci NOT NULL,
+  `checkpoint_name` varchar(255) COLLATE utf8_czech_ci DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8_czech_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+--
+-- Dumping data for table `tbl_checkpoint`
+--
+
+INSERT INTO `tbl_checkpoint` (`id`, `checkpoint_id`, `checkpoint_name`, `note`) VALUES
+(1, 'chp001', 'Reception', 'Reception main entrance (Building C)'),
+(2, 'chp011', 'Conference room Pandora', 'Conference room Pandora (Note)'),
+(3, 'chp002', 'door211', 'Entrance door 2nd floor, building A'),
+(4, 'chp001', 'door105', 'Stairs door 1nd floor, building A'),
+(5, 'chp067', 'Printer II.NP.A', 'Printer corner'),
+(6, 'chp068', 'Printer I.NP.A', 'Printer corner'),
+(7, 'chp022', 'door222', 'Section door 2nd floor, building A'),
+(8, 'A2.8_CR_PANDORA', 'Conference room PANDORA', ''),
+(9, 'A2.8_CR_THALIA', 'Conference room THALIA', ''),
+(10, 'A2.8_COPYC', 'Copy centrum (Printer)', ''),
+(11, 'A_BREAK', 'Break area (Kitchen A)', ''),
+(12, 'B_BREAK', 'Break area (Kitchen B)', ''),
+(13, 'B_ELEVATORS', 'Stairs & elevator (B)', ''),
+(14, 'A_ELEVATORS', 'Stairs & elevator (A)', ''),
+(15, 'B2.2_COPYC', 'Copy centrum (Printer)', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_request`
+--
+
+DROP TABLE IF EXISTS `tbl_request`;
+CREATE TABLE `tbl_request` (
+  `id` int(11) NOT NULL,
+  `checkpoint_id` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `service_id` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `requestor_id` varchar(255) COLLATE utf8_czech_ci DEFAULT NULL,
+  `service_request` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `service_response` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` varchar(255) COLLATE utf8_czech_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+--
+-- Dumping data for table `tbl_request`
+--
+
+INSERT INTO `tbl_request` (`id`, `checkpoint_id`, `service_id`, `requestor_id`, `service_request`, `service_response`, `created`, `note`) VALUES
+(60, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-16 07:16:54', NULL),
+(61, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-16 07:16:57', NULL),
+(62, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-16 07:16:58', NULL),
+(63, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-16 07:17:02', NULL),
+(64, 'chpd001', '9', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-16 07:17:06', NULL),
+(65, 'chpd001', '9', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-16 07:17:08', NULL),
+(66, 'chpd001', '9', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-16 07:17:11', NULL),
+(67, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:18:33', NULL),
+(68, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:18:42', NULL),
+(69, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:18:43', NULL),
+(70, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:19:42', NULL),
+(71, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:19:49', NULL),
+(72, 'chpd001', '10', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:19:53', NULL),
+(73, 'chpd001', '9', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:20:00', NULL),
+(74, 'chpd001', '9', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:24:32', NULL),
+(75, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:24:38', NULL),
+(76, 'chpd001', '9', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:24:46', NULL),
+(77, 'chpd001', '9', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:24:48', NULL),
+(78, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:24:53', NULL),
+(79, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:24:56', NULL),
+(80, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:26:48', NULL),
+(81, 'chpd001', '9', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:26:52', NULL),
+(82, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:39:54', NULL),
+(83, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:45:03', NULL),
+(84, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:45:03', NULL),
+(85, 'chpd001', '9', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:45:03', NULL),
+(86, 'chpd001', '10', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:45:11', NULL),
+(87, 'chpp007', '11', 'H999888', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-17 20:46:12', NULL),
+(88, 'chpp007', '12', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:46:23', NULL),
+(89, 'chpp007', '13', 'H999888', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-17 20:46:34', NULL),
+(90, 'chpp007', '11', 'H999888', 'UnLock the door (CHPD001)', 'Order sent to Alza.cz', '2019-10-17 20:49:47', NULL),
+(91, 'chpp007', '12', 'H999888', 'Lock the door (CHPD001)', 'Order sent to Kancelarske potreby s.r.o', '2019-10-17 20:50:35', NULL),
+(92, 'chpp007', '13', 'H999888', 'Lock the door (CHPD001)', 'Service ticket sent to local IT', '2019-10-17 20:50:41', NULL),
+(93, 'chpp007', '13', 'H999888', 'Lock the door (CHPD001)', 'Service ticket created and sent to local IT', '2019-10-17 20:51:01', NULL),
+(94, 'chpp007', '12', 'H999888', 'Lock the door (CHPD001)', 'Order sent to Kancelarske potreby s.r.o', '2019-10-18 15:22:55', NULL),
+(95, 'chpp007', '11', 'H999888', 'UnLock the door (CHPD001)', 'Order sent to Alza.cz', '2019-10-18 15:23:01', NULL),
+(96, 'chpp007', '13', 'H999888', 'Lock the door (CHPD001)', 'Service ticket created and sent to local IT', '2019-10-18 15:23:06', NULL),
+(97, 'chpd001', '9', 'H332255', 'Lock the door (CHPD001)', 'Door locked...', '2019-10-18 15:23:25', NULL),
+(98, 'chpd001', '10', 'H332255', 'UnLock the door (CHPD001)', 'Door unlocked...', '2019-10-18 15:23:35', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_service`
+--
+
+DROP TABLE IF EXISTS `tbl_service`;
+CREATE TABLE `tbl_service` (
+  `id` int(11) NOT NULL,
+  `checkpoint_id` varchar(50) COLLATE utf8_czech_ci DEFAULT NULL,
+  `service_name` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `service_url` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `note` varchar(255) COLLATE utf8_czech_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+--
+-- Dumping data for table `tbl_service`
+--
+
+INSERT INTO `tbl_service` (`id`, `checkpoint_id`, `service_name`, `service_url`, `note`) VALUES
+(1, 'chp002', 'Request cleaning service', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_cleaning.php', 'Request to clean confroom'),
+(2, 'chp002', 'Coffee order', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_coffee.php', 'Request to serve coffee'),
+(3, 'chp002', 'Conf room reservation', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_cleaning.php', 'Ad-hoc room reservation (door check-in)'),
+(4, 'chp002', 'Conf room release', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_coffee.php', 'Ad-hoc room release (door)'),
+(5, 'chp002', 'Conf room closed', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_cleaning.php', 'Maintenance'),
+(6, 'chp067', 'Supply paper', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_cleaning.php', NULL),
+(7, 'chp068', 'Supply paper', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_cleaning.php', NULL),
+(8, 'chp022', 'Request open door', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/req_cleaning.php', NULL),
+(9, 'chpd001', 'Lock the door', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/s005_personal_door_lock.php?cmd=lock', 'Conference room door Thalia locked (Personal lock)'),
+(10, 'chpd001', 'Unlock the door', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/s005_personal_door_lock.php?cmd=unlock', 'Conference room door Thalia unlocked (Personal unlock)'),
+(11, 'chpP007', 'Replace toner (low)', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/s004_req_printer_supply.php?cmd=toner', 'Order toner'),
+(12, 'chpP007', 'No paper (order)', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/s004_req_printer_supply.php?cmd=paper', 'Order paper'),
+(13, 'chpP007', 'Paper jam (repair)', 'http://10.0.2.2/phpdev/PHP.MPRJ.002_HonNavigator/services/s004_req_printer_supply.php?cmd=jam', 'Paper jam');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_checkpoint`
+--
+ALTER TABLE `tbl_checkpoint`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_request`
+--
+ALTER TABLE `tbl_request`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_service`
+--
+ALTER TABLE `tbl_service`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_checkpoint`
+--
+ALTER TABLE `tbl_checkpoint`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `tbl_request`
+--
+ALTER TABLE `tbl_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+--
+-- AUTO_INCREMENT for table `tbl_service`
+--
+ALTER TABLE `tbl_service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;

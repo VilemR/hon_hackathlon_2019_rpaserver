@@ -1,0 +1,48 @@
+
+
+
+https://github.com/VilemR/hon_hackathlon_2019_rpaserver.git
+
+Clonuji existing project:
+====================================================================================
+cd /home/vilem_reznicek/Development/com.hpa.dev.php/PHP.MPRJ.002_HonNavigator/
+git clone https://github.com/VilemR/hon_hackathlon_2019_rpaserver.git
+
+
+Existujici LocalFolder project postnu na GIT:
+====================================================================================
+cd /home/vilem_reznicek/Development/com.hpa.dev.php/PHP.MPRJ.002_HonNavigator/
+git init
+git remote add origin https://github.com/VilemR/hon_hackathlon_2019_rpaserver.git
+git push -u origin master
+
+
+Sunchronizace (Commit)
+====================================================================================
+cd /home/vilem_reznicek/Development/com.hpa.dev.php/PHP.MPRJ.002_HonNavigator/hon_hackathlon_2019_rpaserver
+git add *
+git commit -m "Release #1"
+git push
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
